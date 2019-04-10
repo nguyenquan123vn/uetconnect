@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="532.0" prefWidth="865.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.controllers.Myhome">
+   <children>
+      <Pane prefHeight="187.0" prefWidth="865.0" style="-fx-background-color: #A1DFFF;">
+         <children>
+            <Label layoutX="76.0" layoutY="48.0" prefHeight="59.0" prefWidth="164.0" text="    My Home">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="105.0" layoutY="107.0" prefHeight="35.0" prefWidth="106.0" text="UET Course" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
