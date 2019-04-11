@@ -9,15 +9,10 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="900.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.controllers.Mycourse">
+<AnchorPane prefHeight="300.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.controllers.Mycourse">
    <children>
       <Pane prefHeight="100.0" prefWidth="900.0" style="-fx-background-color: #A1DFFF;" AnchorPane.bottomAnchor="445.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../image/student.png" />
-               </image>
-            </ImageView>
             <Label layoutX="39.0" prefHeight="65.0" prefWidth="206.0" text="My Course">
                <font>
                   <Font size="24.0" />
@@ -29,10 +24,10 @@
                   <Image url="@../image/student.png" />
                </image>
             </ImageView>
-            <Label fx:id="info" layoutX="767.0" layoutY="113.0" prefHeight="21.0" prefWidth="171.0" />
+            <Label fx:id="info" layoutX="781.0" layoutY="113.0" prefHeight="21.0" prefWidth="157.0" textAlignment="CENTER" />
          </children>
       </Pane>
-      <TableView fx:id="tndata" layoutX="-1.0" layoutY="135.0" prefHeight="447.0" prefWidth="950.0">
+      <TableView fx:id="tndata" layoutY="130.0" prefHeight="447.0" prefWidth="950.0" stylesheets="@../css/stylesheet.css">
         <columns>
           <TableColumn fx:id="subjectId" prefWidth="176.0" text="Subject ID" />
           <TableColumn fx:id="subjectName" prefWidth="225.0" text="Subject" />

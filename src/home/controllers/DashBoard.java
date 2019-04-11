@@ -8,13 +8,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Home implements Initializable {
+public class DashBoard implements Initializable {
 
     @FXML
     private Button btnMycourse;
@@ -36,6 +37,8 @@ public class Home implements Initializable {
 
     @FXML
     private Label info;
+    @FXML
+    private AnchorPane parent;
 
 
     //su kien click chon chuc nang o nut home

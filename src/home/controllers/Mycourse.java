@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,7 +22,8 @@ import java.util.ResourceBundle;
 public class Mycourse implements Initializable {
     @FXML
     Label info;
-
+    @FXML
+    Button btn1;
 
     @FXML
     private TableView<StudentModel> tndata;
@@ -52,6 +54,7 @@ public class Mycourse implements Initializable {
             ResultSet rs = con.createStatement().executeQuery("SELECT subjectId,subjectName, creditsNum,lecturerName from students_subjects");
             while( rs.next()) {
                 oblist.add(new StudentModel(rs.getString("subjectId"),rs.getString("subjectName"),rs.getInt("creditsNum"),rs.getString("lecturerName")));
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,6 +65,7 @@ public class Mycourse implements Initializable {
         subjectName.setCellValueFactory(new PropertyValueFactory<>("SubjectName"));
         creditsNum.setCellValueFactory(new PropertyValueFactory<>("CreditsNum"));
         lecturerName.setCellValueFactory(new PropertyValueFactory<>("LecturerName"));
+
           tndata.setItems(oblist);
     }
 

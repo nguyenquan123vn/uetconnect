@@ -30,11 +30,10 @@ public class Login implements Initializable {
     ProgressBar progressBar;
     @FXML
     protected PasswordField textPassword;
-    @FXML
-    protected Button helloButton;
+
 
     Stage dialogStage = new Stage();
-    Scene scene;
+
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -82,7 +81,7 @@ public class Login implements Initializable {
                       loadStage("/home/fxml/TeacherDashboard.fxml");
                       break;
                   default: //case student thi goi state cua student
-                      loadStage("/home/fxml/Menu.fxml");
+                      loadStage("/home/fxml/DashBoard.fxml");
 
                       break;
               }
@@ -124,6 +123,7 @@ public class Login implements Initializable {
         }
     }
     // tra lai ten cua id tuong ung
+
    public static String getInfo(){
         return info;
    }
