@@ -21,8 +21,7 @@ public class Timetable  implements Initializable{
 
 
     private CalendarView calendar;
-    @FXML
-    Label info;
+
 
     @FXML
     private GridPane pnlHost;
@@ -31,7 +30,7 @@ public class Timetable  implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadCalendar();
-        info.setText(Login.getInfo());
+
     }
 
     private void loadCalendar() {
@@ -40,7 +39,7 @@ public class Timetable  implements Initializable{
         Calendar classes = new Calendar("Classes");
         Calendar meetings = new Calendar("Meetings");
 
-        classes.setStyle(Calendar.Style.STYLE7);
+        classes.setStyle(Calendar.Style.STYLE2);
         meetings.setStyle(Calendar.Style.STYLE2);
 
         CalendarSource myCalendarSource = new CalendarSource("Timetable");
@@ -62,8 +61,8 @@ public class Timetable  implements Initializable{
                     });
 
                     try {
-                        // update every 10 seconds
-                        sleep(10000);
+
+                        sleep(20000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

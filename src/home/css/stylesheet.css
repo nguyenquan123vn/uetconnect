@@ -1,24 +1,9 @@
 .parent{
     -fx-background-color: #fff;
 }
-.sidebar{
-    -fx-background-color: #333645;
-}
-
-.button:hover{
-    -fx-background-color : #10165F;
-}
-.button:pressed
-{
-    -fx-background-color : #1620A1;
-}
-.box{
-    -fx-border-color: #3B3F4B;
-    -fx-border-width: 1px 0px 0px 0px;
-}
-.round-lbl{
-    -fx-background-color: #FE7A79;
-    -fx-background-radius: 100%;
+.text-field {
+    -fx-border-color: #2C85F9;
+    -fx-border-radius: 5px;
 }
 .round-box{
     -fx-background-radius: 100%;
@@ -30,6 +15,40 @@
     -fx-cell-size : 20;
     -fx-background-color:   #2D75E8;
 }
+.button
+{
+    -fx-background-color : #05071F;
+    -fx-text-fill : #e7e5e5;
+}
+.button:hover{
+    -fx-background-color : #10165F;
+}
+.button:pressed
+{
+    -fx-background-color : #1620A1;
+}
+
+.scroll-pane {
+    -fx-background-color: #02030A;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+
 .table-view .column-header .label{
 
     -fx-text-fill: white;
