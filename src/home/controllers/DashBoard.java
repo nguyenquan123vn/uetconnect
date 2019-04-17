@@ -85,6 +85,7 @@ public class DashBoard implements Initializable {
             e.printStackTrace();
         }
     }
+
     public void handleClicks(ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == btnMyhome) {
             this.createPage(parent,"/home/fxml/myhome.fxml");
@@ -106,7 +107,11 @@ public class DashBoard implements Initializable {
             pane.setStyle("-fx-background-color : #1CFA23");
             pane.toFront();
         }
-
+        else if(actionEvent.getSource() == btnSignout){
+            Stage stage = (Stage) btnSignout.getScene().getWindow();
+            stage.close();
+            loadStage("/home/fxml/login.fxml");
+        }
     }
     /*
     public class ScreenController {

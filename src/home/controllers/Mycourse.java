@@ -34,12 +34,10 @@ public class Mycourse implements Initializable {
         ResultSet rs = null;
         try {
             stmt = Conn.createStatement();
-            rs = stmt.executeQuery("SELECT c.classID,e.subjectName FROM students_subjects s INNER JOIN classes c on s.classID = c.classID INNER JOIN subjects e on e.subjectID = c.subjectID");
+            rs = stmt.executeQuery("SELECT concat(e.subjectName,'(',c.classID,') ') FROM uetcourse.students_subjects s INNER JOIN uetcourse.classes c on s.classID = c.classID INNER JOIN uetcourse.Subjects e on e.subjectID = c.subjectID");
 
             while (rs.next()) {
-                String classid = rs.getString(1);
-                items.add(rs.getString(2 ) + "(" + classid + ")");
-
+                items.add(rs.getString(1) );
 
             }
         } catch (SQLException e) {

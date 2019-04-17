@@ -31,7 +31,7 @@ public class Login implements Initializable {
     @FXML
     protected PasswordField textPassword;
 
-
+    boolean login = false;
     Stage dialogStage = new Stage();
 
 
@@ -42,11 +42,6 @@ public class Login implements Initializable {
     public Login() {
         connection = ConnectionUtil.connectdb();
     }
-
-    public void sayHelloButton(javafx.event.ActionEvent event){
-        loadStage("/home/fxml/SayHello.fxml");
-    }
-
 
     //Ham login
     public void loginAction(javafx.event.ActionEvent event){
@@ -81,7 +76,7 @@ public class Login implements Initializable {
                       loadStage("/home/fxml/TeacherDashboard.fxml");
                       break;
                   default: //case student thi goi state cua student
-                      loadStage("/home/fxml/DashBoard.fxml");
+                      loadStage("/home/fxml/dashboard.fxml");
 
                       break;
               }
