@@ -1,76 +1,88 @@
 package home.controllers;
 
 import home.util.ConnectionUtil;
-import home.util.StudentModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class Mycourse implements Initializable {
     @FXML
-    Label info;
-    @FXML
-    Button btn1;
+    private ListView<String> list;
+
+    private ObservableList<String> items = FXCollections.observableArrayList();
 
     @FXML
-    private TableView<StudentModel> tndata;
-    @FXML
-    public TableColumn<StudentModel, Integer> creditsNum;
-
-    @FXML
-    public TableColumn<StudentModel, String> subjectName;
-
-    @FXML
-    public TableColumn<StudentModel, String> subjectId;
-    @FXML
-    public TableColumn<StudentModel, String> lecturerName;
-
-    private ObservableList<StudentModel> oblist = FXCollections.observableArrayList();
-
-    public Mycourse(){}
-
-
-
+    private AnchorPane rootpane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        info.setText(Login.getInfo());
 
+
+        Connection Conn = ConnectionUtil.connectdb();
+
+        Statement stmt = null;
+        ResultSet rs = null;
         try {
-            Connection con = ConnectionUtil.connectdb();
-            ResultSet rs = con.createStatement().executeQuery("SELECT subjectId,subjectName, creditsNum,lecturerName from students_subjects");
-            while( rs.next()) {
-                oblist.add(new StudentModel(rs.getString("subjectId"),rs.getString("subjectName"),rs.getInt("creditsNum"),rs.getString("lecturerName")));
+            stmt = Conn.createStatement();
+            rs = stmt.executeQuery("SELECT c.classID,e.subjectName FROM students_subjects s INNER JOIN classes c on s.classID = c.classID INNER JOIN subjects e on e.subjectID = c.subjectID");
+
+            while (rs.next()) {
+                String classid = rs.getString(1);
+                items.add(rs.getString(2 ) + "(" + classid + ")");
+
 
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+                  e.printStackTrace();
         }
+        list.setItems(items);
 
 
-        subjectId.setCellValueFactory(new PropertyValueFactory<>("SubjectId"));
-        subjectName.setCellValueFactory(new PropertyValueFactory<>("SubjectName"));
-        creditsNum.setCellValueFactory(new PropertyValueFactory<>("CreditsNum"));
-        lecturerName.setCellValueFactory(new PropertyValueFactory<>("LecturerName"));
-
-          tndata.setItems(oblist);
     }
 
 
-      /*  private ObservableList<StudentModel> oblist= FXCollections.observableArrayList(
+
+    public void handleMouseClicked(javafx.scene.input.MouseEvent mouseEvent) {
+        String str = list.getSelectionModel().getSelectedItem();
+        AnchorPane pane;
+        switch (str){
+            case "Giai Tich 1(INT1002-23)":
+                try {
+                    pane =  FXMLLoader.load(getClass().getResource("/home/fxml/subject1.fxml"));
+                    rootpane.getChildren().setAll(pane);
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+              break;
+            case "Giai tich 2(INT1003-23)":
+                try {
+                    pane =  FXMLLoader.load(getClass().getResource("/home/fxml/subject2.fxml"));
+                    rootpane.getChildren().setAll(pane);
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+
+        }
+    }
+
+
+
+
+    public ListView<String> getList() {
+        return list;
+    }
+
+    /*  private ObservableList<StudentModel> oblist= FXCollections.observableArrayList(
                 new StudentModel("INT2209","Mang May Tinh",3,"Tran Binh Trong"),
                 new StudentModel("INT1002","Giai tich 1",3,"Le Phe Do"),
                 new StudentModel("INT1003","Giai tich 2",3,"Le Phe Do"),

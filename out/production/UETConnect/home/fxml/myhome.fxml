@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="532.0" prefWidth="865.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.controllers.Myhome">
+<AnchorPane prefHeight="526.0" prefWidth="842.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.controllers.Myhome">
    <children>
-      <Pane prefHeight="187.0" prefWidth="865.0" style="-fx-background-color: #A1DFFF;">
+      <Pane prefHeight="614.0" prefWidth="949.0" style="-fx-background-color: #FFFFFF;">
          <children>
             <Label layoutX="76.0" layoutY="48.0" prefHeight="59.0" prefWidth="164.0" text="    My Home">
                <font>
@@ -18,6 +16,7 @@
                </font>
             </Label>
             <Label layoutX="105.0" layoutY="107.0" prefHeight="35.0" prefWidth="106.0" text="UET Course" />
+            <JFXTextField layoutX="200.0" layoutY="282.0" maxWidth="825.0" minWidth="361.0" prefHeight="155.0" prefWidth="546.0" />
          </children>
       </Pane>
    </children>
