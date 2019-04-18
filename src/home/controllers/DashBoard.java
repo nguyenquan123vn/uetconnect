@@ -12,6 +12,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -50,6 +54,8 @@ public class DashBoard implements Initializable {
     @FXML
     private Label info;
     @FXML
+    private Label info1;
+    @FXML
     private AnchorPane parent;
 
 
@@ -70,7 +76,11 @@ public class DashBoard implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        info1.setText("My Home");
+        info1.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 40));
+        info1.setTextFill(Color.web("#000000",1));
         info.setText(Login.getInfo());
+        info.setTextFill(Color.web("#000000",1));
     }
 
     private void loadStage(String fxml) {
@@ -80,6 +90,7 @@ public class DashBoard implements Initializable {
             stage.setScene(new Scene(root));
          //   Image icon = new Image(getClass().getResourceAsStream("/home/image/icon.PNG"));
           //  stage.getIcons().add(icon);
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -89,23 +100,24 @@ public class DashBoard implements Initializable {
     public void handleClicks(ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == btnMyhome) {
             this.createPage(parent,"/home/fxml/myhome.fxml");
+            info1.setText("My Home");
         }
         else if(actionEvent.getSource() == btnMycourse) {
             this.createPage(parent,"/home/fxml/mycourse.fxml");
+            info1.setText("My Course");
         }
         else if (actionEvent.getSource() == btntimetable) {
             this.createPage(parent,"/home/fxml/timetable.fxml");
+            info1.setText("Time Table");
         }
         else if (actionEvent.getSource()== btnSettings){
-            pane.setStyle("-fx-background-color : #464F67");
-            pane.toFront();
+            info1.setText("Settings");
         }
         else if(actionEvent.getSource() == btndoc){
 
         }
         else if(actionEvent.getSource() == btnnews){
-            pane.setStyle("-fx-background-color : #1CFA23");
-            pane.toFront();
+            info1.setText("News");
         }
         else if(actionEvent.getSource() == btnSignout){
             Stage stage = (Stage) btnSignout.getScene().getWindow();

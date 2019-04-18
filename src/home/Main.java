@@ -21,13 +21,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
         primaryStage.setTitle("");
         Image icon = new Image(getClass().getResourceAsStream("/home/image/icon.png"));primaryStage.getIcons().add(icon);
-        Rectangle2D screen = Screen.getPrimary().getBounds();
-        height = screen.getHeight();
-        width = screen.getWidth();
-        primaryStage.setScene(new Scene(root, 632.0, 642.0));
+        primaryStage.setScene(new Scene(root, 632.0, 570.0));
+        primaryStage.setResizable(true);
         primaryStage.show();
-
-
     }
 
     public static void main(String[] args) {
