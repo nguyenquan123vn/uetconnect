@@ -98,7 +98,7 @@
       </VBox>
       <Pane layoutX="268.0" layoutY="1.0" prefHeight="576.0" prefWidth="842.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Pane layoutY="-1.0" prefHeight="129.0" prefWidth="842.0" stylesheets="@../css/stylesheet.css">
+            <Pane layoutY="-1.0" prefHeight="129.0" prefWidth="842.0" style="-fx-background-color: #F498EF;">
                <children>
                   <Label fx:id="info" layoutX="731.0" layoutY="94.0" prefHeight="21.0" prefWidth="107.0" textFill="#e7e5e5" />
                   <ImageView fitHeight="73.0" fitWidth="67.0" layoutX="751.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
