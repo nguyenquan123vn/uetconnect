@@ -1,6 +1,8 @@
 package home.controllers;
 
 import home.util.ConnectionUtil;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -17,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -30,8 +33,9 @@ public class Login implements Initializable {
     ProgressBar progressBar;
     @FXML
     protected PasswordField textPassword;
-
-
+    @FXML
+    protected AnchorPane anchorPane1;
+    boolean login = false;
     Stage dialogStage = new Stage();
 
 
@@ -42,11 +46,6 @@ public class Login implements Initializable {
     public Login() {
         connection = ConnectionUtil.connectdb();
     }
-
-    public void sayHelloButton(javafx.event.ActionEvent event){
-        loadStage("/home/fxml/SayHello.fxml");
-    }
-
 
     //Ham login
     public void loginAction(javafx.event.ActionEvent event){
@@ -75,16 +74,15 @@ public class Login implements Initializable {
                      dialogStage = (Stage) node.getScene().getWindow();
                      dialogStage.close();
 
-              switch (profession) {
-                  case "teacher": //case teacher thi goi stage cua teacher
+                      switch (profession) {
+                          case "teacher": //case teacher thi goi stage cua teacher
 
-                      loadStage("/home/fxml/TeacherDashboard.fxml");
-                      break;
-                  default: //case student thi goi state cua student
-                      loadStage("/home/fxml/DashBoard.fxml");
-
-                      break;
-              }
+                              loadStage("/home/fxml/TeacherDashboard.fxml");
+                              break;
+                          default: //case student thi goi state cua student
+                              loadStage("/home/fxml/dashboard.fxml");
+                              break;
+                      }
                   }
               } catch (Exception e) {
                   e.printStackTrace();
@@ -116,7 +114,7 @@ public class Login implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
            stage.getIcons().add(new Image("/home/image/icon.png"));
-            stage.initModality(Modality.APPLICATION_MODAL);
+           stage.setResizable(true);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

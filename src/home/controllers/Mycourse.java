@@ -34,13 +34,11 @@ public class Mycourse implements Initializable {
         ResultSet rs = null;
         try {
             stmt = Conn.createStatement();
-            rs = stmt.executeQuery("SELECT c.classID,e.subjectName FROM students_subjects s INNER JOIN classes c on s.classID = c.classID INNER JOIN subjects e on e.subjectID = c.subjectID");
+            rs = stmt.executeQuery("SELECT concat(e.subjectName,'(',c.classID,') ') FROM uetcourse.students_subjects s INNER JOIN uetcourse.classes c on s.classID = c.classID INNER JOIN uetcourse.Subjects e on e.subjectID = c.subjectID");
 
             while (rs.next()) {
-                String classid = rs.getString(1);
-                items.add(rs.getString(2 ) + "(" + classid + ")");
-
-
+                String str1 = rs.getString(1);
+                items.add(str1);
             }
         } catch (SQLException e) {
                   e.printStackTrace();
@@ -53,10 +51,10 @@ public class Mycourse implements Initializable {
 
 
     public void handleMouseClicked(javafx.scene.input.MouseEvent mouseEvent) {
-        String str = list.getSelectionModel().getSelectedItem();
+        int index = list.getSelectionModel().getSelectedIndex();
         AnchorPane pane;
-        switch (str){
-            case "Giai Tich 1(INT1002-23)":
+        switch (index){
+            case 0:
                 try {
                     pane =  FXMLLoader.load(getClass().getResource("/home/fxml/subject1.fxml"));
                     rootpane.getChildren().setAll(pane);
@@ -64,7 +62,7 @@ public class Mycourse implements Initializable {
                     e.printStackTrace();
                 }
               break;
-            case "Giai tich 2(INT1003-23)":
+            case 1:
                 try {
                     pane =  FXMLLoader.load(getClass().getResource("/home/fxml/subject2.fxml"));
                     rootpane.getChildren().setAll(pane);
