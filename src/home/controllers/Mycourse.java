@@ -44,11 +44,7 @@ public class Mycourse implements Initializable {
                   e.printStackTrace();
         }
         list.setItems(items);
-
-
     }
-
-
 
     public void handleMouseClicked(javafx.scene.input.MouseEvent mouseEvent) {
         int index = list.getSelectionModel().getSelectedIndex();
