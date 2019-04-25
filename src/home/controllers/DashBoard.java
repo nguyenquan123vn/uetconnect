@@ -1,5 +1,7 @@
 package home.controllers;
 
+import com.jfoenix.controls.JFXTextField;
+import home.util.ConnectionUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,8 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -57,7 +61,10 @@ public class DashBoard implements Initializable {
     private Label info1;
     @FXML
     private AnchorPane parent;
-
+    @FXML
+    protected Button btnTest;
+    @FXML
+    private JFXTextField txtField;
 
     //su kien click chon chuc nang o nut home
    /* @FXML
@@ -90,7 +97,7 @@ public class DashBoard implements Initializable {
             stage.setScene(new Scene(root));
          //   Image icon = new Image(getClass().getResourceAsStream("/home/image/icon.PNG"));
           //  stage.getIcons().add(icon);
-            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.initModality(Modality.WINDOW_MODAL);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -123,6 +130,8 @@ public class DashBoard implements Initializable {
             Stage stage = (Stage) btnSignout.getScene().getWindow();
             stage.close();
             loadStage("/home/fxml/login.fxml");
+        } else if(actionEvent.getSource() == btnTest){
+            ConnectionUtil.readBlob(1,"INT1002");
         }
     }
     /*

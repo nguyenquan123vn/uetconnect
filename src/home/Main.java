@@ -14,10 +14,12 @@ public class Main extends Application {
 
     private double height;
     private double width;
+    private Stage preloaderStage;
 
     //load san khau chinh
     @Override
     public void start(Stage primaryStage) throws Exception{
+        this.preloaderStage = primaryStage;
         Parent root = FXMLLoader.load(getClass().getResource("fxml/login.fxml"));
         primaryStage.setTitle("");
         Image icon = new Image(getClass().getResourceAsStream("/home/image/icon.png"));primaryStage.getIcons().add(icon);
