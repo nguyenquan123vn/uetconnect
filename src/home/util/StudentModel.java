@@ -2,52 +2,76 @@ package home.util;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.util.Callback;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class StudentModel {
 
-    private SimpleIntegerProperty creditsNum;
-    private SimpleStringProperty subjectId;
-    private SimpleStringProperty subjectName;
-    private SimpleStringProperty lecturerName;
+    public SimpleStringProperty studentId = new SimpleStringProperty();
+    public SimpleStringProperty studentName = new SimpleStringProperty();
+    public SimpleStringProperty grade = new SimpleStringProperty();
+    public SimpleStringProperty classId = new SimpleStringProperty();
 
+    public StudentModel(){}
 
-
-    public StudentModel(String subjectId, String subjectName,Integer creditsNum, String lecturerName) {
-        this.subjectId = new SimpleStringProperty(subjectId);
-        this.subjectName= new SimpleStringProperty(subjectName);
-        this.creditsNum = new SimpleIntegerProperty(creditsNum);
-        this.lecturerName = new SimpleStringProperty(lecturerName);
+    public StudentModel(String studId, String studName, String grade){
+        this.studentId = new SimpleStringProperty(studId);
+        this.studentName = new SimpleStringProperty(studName);
+        this.grade = new SimpleStringProperty(grade);
     }
 
-    public int getCreditsNum() {
-        return creditsNum.get();
+    public void setClassId(String classId) {
+        this.classId.set(classId);
     }
 
-    public String getSubjectName() {
-        return subjectName.get();
+    public void setGrade(String grade) {
+        this.grade.set(grade);
     }
 
-    public SimpleStringProperty subjectNameProperty() {
-        return subjectName;
+    public void setStudentId(String studentId) {
+        this.studentId.set(studentId);
     }
 
-    public String getSubjectId() {
-        return subjectId.get();
+    public void setStudentName(String studentName) {
+        this.studentName.set(studentName);
     }
 
-    public SimpleStringProperty subjectIdProperty() {
-        return subjectId;
+    public String getStudentId() {
+        return studentId.get();
     }
 
-    public SimpleIntegerProperty creditsNumProperty() {
-        return creditsNum;
+    public SimpleStringProperty studentIdProperty() {
+        return studentId;
     }
 
-    public String getLecturerName() {
-        return lecturerName.get();
+    public String getStudentName() {
+        return studentName.get();
     }
 
-    public SimpleStringProperty lecturerNameProperty() {
-        return lecturerName;
+    public SimpleStringProperty studentNameProperty() {
+        return studentName;
+    }
+
+    public String getGrade() {
+        return grade.get();
+    }
+
+    public SimpleStringProperty gradeProperty() {
+        return grade;
+    }
+
+    public String getClassId() {
+        return classId.get();
+    }
+
+    public SimpleStringProperty classIdProperty() {
+        return classId;
     }
 }

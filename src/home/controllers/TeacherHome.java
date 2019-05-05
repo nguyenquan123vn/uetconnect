@@ -1,6 +1,9 @@
 package home.controllers;
 
 import home.util.ConnectionUtil;
+import home.util.StudentModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -53,7 +56,6 @@ public class TeacherHome implements Initializable{
         infoTeacher.setText("Lecturer " + Login.getInfo());
         infoFunction.setText("My Home");
         infoFunction.setFont(Font.font("arial", FontWeight.MEDIUM, FontPosture.REGULAR, 40));
-
     }
 
     public void handleClicker(ActionEvent actionEvent) throws IOException {

@@ -98,6 +98,7 @@ public class DashBoard implements Initializable {
          //   Image icon = new Image(getClass().getResourceAsStream("/home/image/icon.PNG"));
           //  stage.getIcons().add(icon);
             stage.initModality(Modality.WINDOW_MODAL);
+            stage.setTitle("UETConnect");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -131,7 +132,7 @@ public class DashBoard implements Initializable {
             stage.close();
             loadStage("/home/fxml/login.fxml");
         } else if(actionEvent.getSource() == btnTest){
-            ConnectionUtil.readBlob(1,"INT1002");
+            ConnectionUtil.readBlob("2","INT1002");
         }
     }
     /*

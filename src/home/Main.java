@@ -24,7 +24,8 @@ public class Main extends Application {
         primaryStage.setTitle("");
         Image icon = new Image(getClass().getResourceAsStream("/home/image/icon.png"));primaryStage.getIcons().add(icon);
         primaryStage.setScene(new Scene(root, 632.0, 570.0));
-        primaryStage.setResizable(true);
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("UETConnect");
         primaryStage.show();
     }
 

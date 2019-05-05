@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 public class Login implements Initializable {
 
     protected static String info = "";
+    protected static String profID = "";
     protected static String profession = "";
     @FXML
     protected TextField textEmail;
@@ -63,10 +64,10 @@ public class Login implements Initializable {
                   resultSet = preparedStatement.executeQuery(); // resultSet la 1 tap cac bo sau khi da thuc hien truy van
 
                   if (!resultSet.next()) {
-                      infoBox("Please enter correct Email and Password", null, "Failed");
+                      infoBox("Please enter correct Email and Password", null, "Login Failed");
                   } else {
                    //   infoBox("Login Successfull", null, "Success");
-
+                      profID = username;
                       info = resultSet.getString("name"); // lay ten cua gia tri tuong ung o cot name
                       profession = resultSet.getString("profession"); //lay ra gia tri tuong ung o cot profession
                       System.out.println(info);
@@ -93,7 +94,7 @@ public class Login implements Initializable {
 
      //Ham dua ra loi nhac nho
     public static void infoBox(String infoMessage, String headerText, String title){
-        Alert alert = new Alert(AlertType.CONFIRMATION);
+        Alert alert = new Alert(AlertType.ERROR);
         alert.setContentText(infoMessage);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
@@ -103,10 +104,8 @@ public class Login implements Initializable {
 
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {}
 
-
-    }
     //Ham load san khau
     private void loadStage(String fxml) {
         try {
@@ -114,7 +113,8 @@ public class Login implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
            stage.getIcons().add(new Image("/home/image/icon.png"));
-           stage.setResizable(true);
+           stage.setResizable(false);
+           stage.setTitle("UETConnect");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -126,4 +126,7 @@ public class Login implements Initializable {
         return info;
    }
 
+   public static String getProfID() {
+        return profID;
+   }
 }
