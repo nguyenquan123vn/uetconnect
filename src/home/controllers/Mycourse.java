@@ -3,6 +3,7 @@ package home.controllers;
 import home.util.ConnectionUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,7 +11,9 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -34,7 +37,7 @@ public class Mycourse implements Initializable {
         ResultSet rs = null;
         try {
             stmt = Conn.createStatement();
-            rs = stmt.executeQuery("SELECT concat(e.subjectName,'(',c.classID,') ') FROM uetcourse.students_subjects s INNER JOIN uetcourse.classes c on s.classID = c.classID INNER JOIN uetcourse.Subjects e on e.subjectID = c.subjectID");
+            rs = stmt.executeQuery("SELECT distinct concat(e.subjectName,'(',c.classID,') ') FROM uetcourse.students_subjects s INNER JOIN uetcourse.classes c on s.classID = c.classID INNER JOIN uetcourse.Subjects e on e.subjectID = c.subjectID");
 
             while (rs.next()) {
                 String str1 = rs.getString(1);
@@ -87,5 +90,4 @@ public class Mycourse implements Initializable {
 
         );
         */
-
 }
