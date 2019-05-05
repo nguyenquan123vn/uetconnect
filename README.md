@@ -1,7 +1,7 @@
 
 Team:
 Đinh Công Phan
-Nguyễn Hông Quân
+Nguyễn Hồng Quân
 Nguyễn Đình Minh
 Nguyễn Quỳnh Mai
 Nguyễn Xuân Huy
