@@ -101,8 +101,6 @@ public class Login implements Initializable {
         alert.showAndWait();
     }
 
-
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {}
 

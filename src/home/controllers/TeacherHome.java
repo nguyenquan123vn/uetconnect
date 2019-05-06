@@ -18,6 +18,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -49,18 +51,22 @@ public class TeacherHome implements Initializable{
     protected Pane pane1;
     @FXML
     private AnchorPane parent;
+    @FXML
+    WebView webView;
 
     //set ten techer sau khi dang nhap thanh cong
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources){
         infoTeacher.setText("Lecturer " + Login.getInfo());
         infoFunction.setText("My Home");
         infoFunction.setFont(Font.font("arial", FontWeight.MEDIUM, FontPosture.REGULAR, 40));
+        WebEngine engine = webView.getEngine();
+        engine.load("https://uet.vnu.edu.vn/category/tin-tuc/tin-sinh-vien/");
     }
 
     public void handleClicker(ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == myHomeBtn) {
-            this.createPage1(parent, "/home/fxml/myhome.fxml");
+            this.createPage1(parent, "/home/fxml/subject2.fxml");
             infoFunction.setText("My Home");
         } else if (actionEvent.getSource() == myCourseBtn) {
             this.createPage1(parent, "/home/fxml/teacherMyCourse.fxml");

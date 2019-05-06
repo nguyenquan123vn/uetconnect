@@ -18,6 +18,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -65,6 +67,8 @@ public class DashBoard implements Initializable {
     protected Button btnTest;
     @FXML
     private JFXTextField txtField;
+    @FXML
+    WebView webView;
 
     //su kien click chon chuc nang o nut home
    /* @FXML
@@ -88,6 +92,8 @@ public class DashBoard implements Initializable {
         info1.setTextFill(Color.web("#000000",1));
         info.setText(Login.getInfo());
         info.setTextFill(Color.web("#000000",1));
+        WebEngine engine = webView.getEngine();
+        engine.load("https://uet.vnu.edu.vn/category/tin-tuc/tin-sinh-vien/");
     }
 
     private void loadStage(String fxml) {
@@ -107,7 +113,7 @@ public class DashBoard implements Initializable {
 
     public void handleClicks(ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == btnMyhome) {
-            this.createPage(parent,"/home/fxml/myhome.fxml");
+            this.createPage(parent,"/home/fxml/subject2.fxml");
             info1.setText("My Home");
         }
         else if(actionEvent.getSource() == btnMycourse) {
