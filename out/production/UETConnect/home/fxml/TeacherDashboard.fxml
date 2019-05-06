@@ -9,10 +9,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="1109.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.controllers.TeacherHome">
    <children>
-      <Pane layoutX="291.0" layoutY="-2.0" prefHeight="129.0" prefWidth="842.0" style="-fx-background-color: #F498EF;" AnchorPane.bottomAnchor="408.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane layoutX="291.0" layoutY="-2.0" prefHeight="129.0" prefWidth="842.0" style="-fx-background-color: #3a84c3;" AnchorPane.bottomAnchor="408.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="110.0" fitWidth="106.0" layoutX="980.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -29,9 +30,9 @@
       </Pane>
       <VBox alignment="TOP_CENTER" layoutX="-1.0" layoutY="-6.0" prefHeight="584.0" prefWidth="268.0" style="-fx-background-color: #05071F;" stylesheets="@../css/stylesheet.css">
          <children>
-            <Button fx:id="myHomeBtn" accessibleRole="IMAGE_VIEW" mnemonicParsing="false" prefHeight="145.0" prefWidth="146.0">
+            <Button fx:id="myHomeBtn" accessibleRole="IMAGE_VIEW" mnemonicParsing="false" onAction="#handleClicker" prefHeight="145.0" prefWidth="146.0">
                <graphic>
-                  <ImageView fitHeight="130.0" fitWidth="130.0" onDragDetected="#handleClicker">
+                  <ImageView fitHeight="130.0" fitWidth="130.0">
                      <image>
                         <Image url="@../image/uetLogo.png" />
                      </image>
@@ -77,6 +78,9 @@
             </Button>
          </children>
       </VBox>
-      <Pane fx:id="pane1" layoutX="266.0" layoutY="170.0" prefHeight="408.0" prefWidth="844.0" />
+      <Pane fx:id="pane1" layoutX="267.0" layoutY="170.0" prefHeight="408.0" prefWidth="842.0">
+         <children>
+            <WebView fx:id="webView" prefHeight="408.0" prefWidth="842.0" />
+         </children></Pane>
    </children>
 </AnchorPane>

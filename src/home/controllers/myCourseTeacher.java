@@ -108,6 +108,7 @@ public class myCourseTeacher implements Initializable {
         if (str != null) {
             String substr = str.substring(1, 11);
             classID = substr;
+            System.out.println(substr+  "aa");
             if (actionEvent.getSource() == viewCoursebtn) {
                 Parent root = FXMLLoader.load(getClass().getResource("/home/fxml/coursesView.fxml"));
                 Stage stage = new Stage();
@@ -120,9 +121,7 @@ public class myCourseTeacher implements Initializable {
                 list1.getItems().remove(index);
                 delete(substr);
             } else if (actionEvent.getSource() == viewStudentbtn) {
-                /*String substr = str.substring(1,11);
                 buildData(substr);
-                System.out.println(substr);
                 StackPane root = new StackPane();
                 Stage stage = new Stage();
                 root.setPadding(new Insets(10));
@@ -130,8 +129,6 @@ public class myCourseTeacher implements Initializable {
                 Scene scene = new Scene(root, 370, 300);
                 stage.setScene(scene);
                 stage.show();
-                tableView.setEditable(true);
-                tableView.getSelectionModel().setCellSelectionEnabled(true); */
             }
         } else if (actionEvent.getSource() == newCoursebtn) {
             GridPane grid = newCourse();
@@ -233,10 +230,7 @@ public class myCourseTeacher implements Initializable {
         return list1;
     }
 
-    public void newCourseDialog() {
-    }
-
-    /* public void buildData(String string) throws SQLException{
+    public void buildData(String string) throws SQLException{
         String sql = "SELECT s1.studentId, s1.studentName, s.grade FROM uetcourse.students_subjects as s inner join uetcourse.studentsInfo as s1 where s.studentsId = s1.studentId and s.classId = ?;";
         ResultSet rs = null;
         try{
@@ -263,10 +257,6 @@ public class myCourseTeacher implements Initializable {
             }
             column.setCellValueFactory(new PropertyValueFactory<>(rs.getMetaData().getColumnName(i+1)));
             tableView.getColumns().add(column);
-            tableView.setEditable(true);
-            tableView.getSelectionModel().setCellSelectionEnabled(true);
-            column.setCellValueFactory(TextFieldTableCell.forTableColumn());
-
         }
         tableView.setItems(dbData);
     }
@@ -287,7 +277,7 @@ public class myCourseTeacher implements Initializable {
         }
         return data;
     }
-
+    /*
     private void handleUpdate(TableColumn column){
         tableView.setEditable(true);
         tableView.getSelectionModel().setCellSelectionEnabled(true);
