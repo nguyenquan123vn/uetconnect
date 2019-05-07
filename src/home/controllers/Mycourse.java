@@ -6,8 +6,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
@@ -23,6 +25,12 @@ public class Mycourse implements Initializable {
     private ListView<String> list;
     @FXML
     private AnchorPane rootpane;
+    @FXML
+    private PieChart pie;
+    @FXML
+    private Button viewCourse;
+    @FXML
+    private Button leaveCourse;
 
     private static String classID;
     private ObservableList<String> items = FXCollections.observableArrayList();
@@ -50,21 +58,63 @@ public class Mycourse implements Initializable {
                   e.printStackTrace();
         }
         list.setItems(items);
+
+
     }
 
     public void handleMouseClicked(javafx.scene.input.MouseEvent mouseEvent) {
         int index = list.getSelectionModel().getSelectedIndex();
         String item = list.getSelectionModel().getSelectedItem();
-        classID = item.substring(1,11);
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/home/fxml/studentCourseView.fxml"));
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.setTitle(item);
-            stage.show();
-        } catch (IOException e){
-            e.printStackTrace();
+        if(index != -1) {
+            classID = item.substring(1,11);
+            pie.getData().clear();
+            int attend = 0;
+            try {
+                String stm = "SELECT attendance FROM uetcourse.students_subjects WHERE studentsId = ? and classId = ?";
+                System.out.println(Login.getUserID() + " ");
+                ResultSet rs = null;
+                Connection conn = ConnectionUtil.connectdb();
+                PreparedStatement prepStatement = conn.prepareStatement(stm);
+                prepStatement.setString(1, Login.getUserID());
+                prepStatement.setString(2, classID);
+                rs = prepStatement.executeQuery();
+                while (rs.next()) {
+                    attend = rs.getInt(1);
+                }
+            } catch (SQLException e) {
+                e.getStackTrace();
+            }
+            PieChart.Data slice = new PieChart.Data("Attendance", attend);
+            PieChart.Data slice1 = new PieChart.Data("Absent", 13 - attend);
+            pie.getData().add(slice);
+            pie.getData().add(slice1);
+            pie.setLegendSide(Side.BOTTOM);
+            pie.setStartAngle(30);
+            if(mouseEvent.getSource() == viewCourse){
+                try {
+                    Parent root = FXMLLoader.load(getClass().getResource("/home/fxml/studentCourseView.fxml"));
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.setTitle(item);
+                    stage.show();
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            } else if(mouseEvent.getSource() == leaveCourse){
+                try{
+                    Connection Conn = ConnectionUtil.connectdb();
+                    PreparedStatement stmt = Conn.prepareStatement("DELETE FROM uetcourse.students_subjects Where classId =? and studentsId = ?");
+                    stmt.setString(1, classID);
+                    stmt.setString(2,Login.getUserID());
+                    stmt.executeUpdate();
+                } catch (SQLException e ){
+                    e.printStackTrace();
+                }
+                list.getItems().remove(index);
+            }
+        } else {
+            Login.infoBox("Please select a class", null, "Error");
         }
     }
 
