@@ -11,29 +11,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.*;
 import javafx.scene.text.FontWeight;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.geometry.Insets;
 import javafx.scene.text.Font;
 import javafx.stage.Window;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -108,7 +100,7 @@ public class myCourseTeacher implements Initializable {
         if (str != null) {
             String substr = str.substring(1, 11);
             classID = substr;
-            System.out.println(substr+  "aa");
+            System.out.println(substr);
             if (actionEvent.getSource() == viewCoursebtn) {
                 Parent root = FXMLLoader.load(getClass().getResource("/home/fxml/coursesView.fxml"));
                 Stage stage = new Stage();
@@ -183,7 +175,7 @@ public class myCourseTeacher implements Initializable {
                         String courseId = courseIdField.getText();
                         String subjectId = courseId.substring(0, 7);
                         System.out.println(subjectId);
-                        String profId = Login.getProfID();
+                        String profId = Login.getUserID();
                         Connection con = ConnectionUtil.connectdb();
                         try {
                             String sql = "INSERT INTO uetcourse.classes (classId, lecturerId, subjectId, semester) VALUES (?,?,?,?)";

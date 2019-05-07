@@ -3,17 +3,19 @@ package home.controllers;
 import home.util.ConnectionUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Side;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -21,11 +23,17 @@ import java.util.ResourceBundle;
 public class Mycourse implements Initializable {
     @FXML
     private ListView<String> list;
-
-    private ObservableList<String> items = FXCollections.observableArrayList();
-
     @FXML
     private AnchorPane rootpane;
+    @FXML
+    private PieChart pie;
+    @FXML
+    private Button viewCourse;
+    @FXML
+    private Button leaveCourse;
+
+    private static String classID;
+    private ObservableList<String> items = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -37,8 +45,11 @@ public class Mycourse implements Initializable {
         ResultSet rs = null;
         try {
             stmt = Conn.createStatement();
-            rs = stmt.executeQuery("SELECT distinct concat(e.subjectName,'(',c.classID,') ') FROM uetcourse.students_subjects s INNER JOIN uetcourse.classes c on s.classID = c.classID INNER JOIN uetcourse.Subjects e on e.subjectID = c.subjectID");
-
+            rs = stmt.executeQuery("SELECT distinct concat('(',c.classID,') ', s1.subjectName, '- So tin chi: ', s1.creditsNum, '- GV: ', l.lecturerName) \n" +
+                    "FROM uetcourse.students_subjects s \n" +
+                    "INNER JOIN uetcourse.classes c on s.classID = c.classID \n" +
+                    "INNER JOIN uetcourse.Subjects as s1 \n" +
+                    "Inner join uetcourse.Lecturers as l on s1.subjectID = c.subjectID and l.lecturerId = c.lecturerId\n");
             while (rs.next()) {
                 String str1 = rs.getString(1);
                 items.add(str1);
@@ -47,47 +58,71 @@ public class Mycourse implements Initializable {
                   e.printStackTrace();
         }
         list.setItems(items);
+
+
     }
 
     public void handleMouseClicked(javafx.scene.input.MouseEvent mouseEvent) {
         int index = list.getSelectionModel().getSelectedIndex();
-        AnchorPane pane;
-        switch (index){
-            case 0:
+        String item = list.getSelectionModel().getSelectedItem();
+        if(index != -1) {
+            classID = item.substring(1,11);
+            pie.getData().clear();
+            int attend = 0;
+            try {
+                String stm = "SELECT attendance FROM uetcourse.students_subjects WHERE studentsId = ? and classId = ?";
+                System.out.println(Login.getUserID() + " ");
+                ResultSet rs = null;
+                Connection conn = ConnectionUtil.connectdb();
+                PreparedStatement prepStatement = conn.prepareStatement(stm);
+                prepStatement.setString(1, Login.getUserID());
+                prepStatement.setString(2, classID);
+                rs = prepStatement.executeQuery();
+                while (rs.next()) {
+                    attend = rs.getInt(1);
+                }
+            } catch (SQLException e) {
+                e.getStackTrace();
+            }
+            PieChart.Data slice = new PieChart.Data("Attendance", attend);
+            PieChart.Data slice1 = new PieChart.Data("Absent", 13 - attend);
+            pie.getData().add(slice);
+            pie.getData().add(slice1);
+            pie.setLegendSide(Side.BOTTOM);
+            pie.setStartAngle(30);
+            if(mouseEvent.getSource() == viewCourse){
                 try {
-                    pane =  FXMLLoader.load(getClass().getResource("/home/fxml/subject1.fxml"));
-                    rootpane.getChildren().setAll(pane);
-                }catch (IOException e){
+                    Parent root = FXMLLoader.load(getClass().getResource("/home/fxml/studentCourseView.fxml"));
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root));
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.setTitle(item);
+                    stage.show();
+                } catch (IOException e){
                     e.printStackTrace();
                 }
-              break;
-            case 1:
-                try {
-                    pane =  FXMLLoader.load(getClass().getResource("/home/fxml/subject2.fxml"));
-                    rootpane.getChildren().setAll(pane);
-                }catch (IOException e){
+            } else if(mouseEvent.getSource() == leaveCourse){
+                try{
+                    Connection Conn = ConnectionUtil.connectdb();
+                    PreparedStatement stmt = Conn.prepareStatement("DELETE FROM uetcourse.students_subjects Where classId =? and studentsId = ?");
+                    stmt.setString(1, classID);
+                    stmt.setString(2,Login.getUserID());
+                    stmt.executeUpdate();
+                } catch (SQLException e ){
                     e.printStackTrace();
                 }
-
+                list.getItems().remove(index);
+            }
+        } else {
+            Login.infoBox("Please select a class", null, "Error");
         }
     }
 
-
-
+    public static String getclassID(){
+        return classID;
+    }
 
     public ListView<String> getList() {
         return list;
     }
-
-    /*  private ObservableList<StudentModel> oblist= FXCollections.observableArrayList(
-                new StudentModel("INT2209","Mang May Tinh",3,"Tran Binh Trong"),
-                new StudentModel("INT1002","Giai tich 1",3,"Le Phe Do"),
-                new StudentModel("INT1003","Giai tich 2",3,"Le Phe Do"),
-                new StudentModel ("INT2002","Phuong phap tinh",2,"Le Phe Do"),
-                new StudentModel ("INT3002","Toan Roi Rac",4,"Le Phe Do"),
-
-                new StudentModel ( "INT4002","Nhap Mon An Toan Thong Tin",3,"Le Phe Do")
-
-        );
-        */
 }

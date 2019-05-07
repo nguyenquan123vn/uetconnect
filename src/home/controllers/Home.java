@@ -8,7 +8,7 @@ import javafx.scene.web.WebView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Subject2 implements Initializable {
+public class Home implements Initializable {
     @FXML
     WebView webView;
     @Override

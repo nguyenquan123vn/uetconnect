@@ -1,9 +1,5 @@
 package home.controllers;
 
-import home.util.ConnectionUtil;
-import home.util.StudentModel;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,15 +16,11 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
-import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.util.ResourceBundle;
 
 public class TeacherHome implements Initializable{
@@ -66,7 +58,7 @@ public class TeacherHome implements Initializable{
 
     public void handleClicker(ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == myHomeBtn) {
-            this.createPage1(parent, "/home/fxml/subject2.fxml");
+            this.createPage1(parent, "/home/fxml/Home.fxml");
             infoFunction.setText("My Home");
         } else if (actionEvent.getSource() == myCourseBtn) {
             this.createPage1(parent, "/home/fxml/teacherMyCourse.fxml");

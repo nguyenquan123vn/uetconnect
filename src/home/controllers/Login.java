@@ -1,8 +1,6 @@
 package home.controllers;
 
 import home.util.ConnectionUtil;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -20,13 +18,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 public class Login implements Initializable {
 
     protected static String info = "";
-    protected static String profID = "";
+    protected static String userID = "";
     protected static String profession = "";
     @FXML
     protected TextField textEmail;
@@ -67,7 +63,7 @@ public class Login implements Initializable {
                       infoBox("Please enter correct Email and Password", null, "Login Failed");
                   } else {
                    //   infoBox("Login Successfull", null, "Success");
-                      profID = username;
+                      userID = username;
                       info = resultSet.getString("name"); // lay ten cua gia tri tuong ung o cot name
                       profession = resultSet.getString("profession"); //lay ra gia tri tuong ung o cot profession
                       System.out.println(info);
@@ -124,7 +120,7 @@ public class Login implements Initializable {
         return info;
    }
 
-   public static String getProfID() {
-        return profID;
+   public static String getUserID() {
+        return userID;
    }
 }
