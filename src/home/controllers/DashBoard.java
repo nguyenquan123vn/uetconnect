@@ -11,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -23,7 +22,6 @@ import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -113,7 +111,7 @@ public class DashBoard implements Initializable {
 
     public void handleClicks(ActionEvent actionEvent) throws IOException {
         if (actionEvent.getSource() == btnMyhome) {
-            this.createPage(parent,"/home/fxml/subject2.fxml");
+            this.createPage(parent, "/home/fxml/Home.fxml");
             info1.setText("My Home");
         }
         else if(actionEvent.getSource() == btnMycourse) {

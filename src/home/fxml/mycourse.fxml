@@ -9,8 +9,8 @@
    <children>
       <Pane prefHeight="447.0" prefWidth="842.0">
          <children>
-            <JFXListView fx:id="list" layoutX="50.0" layoutY="60.0" onMouseClicked="#handleMouseClicked" prefHeight="356.0" prefWidth="312.0" />
-            <Label layoutX="49.0" layoutY="28.0" prefHeight="21.0" prefWidth="94.0" text="Your Course" />
+            <JFXListView fx:id="list" layoutX="25.0" layoutY="60.0" onMouseClicked="#handleMouseClicked" prefHeight="356.0" prefWidth="425.0" />
+            <Label layoutX="25.0" layoutY="24.0" prefHeight="21.0" prefWidth="94.0" text="Your Course" />
          </children>
       </Pane>
    </children>
