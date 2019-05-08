@@ -6,14 +6,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import org.jpedal.PdfDecoder;
+import org.jpedal.examples.viewer.Viewer;
 
 import java.awt.*;
+import java.io.File;
 import java.net.URI;
 import java.net.URL;
 import java.sql.Connection;
@@ -23,6 +32,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class studentCourseView implements Initializable {
+    @FXML
+    private AnchorPane ap;
     @FXML
     private TableView<CourseViewModel> tableView;
     @FXML
@@ -38,7 +49,9 @@ public class studentCourseView implements Initializable {
     @FXML
     private Hyperlink textbook;
 
+    private static String st;
 
+    private static String file;
 
     ObservableList<CourseViewModel> listCourses = FXCollections.observableArrayList();
 
@@ -52,7 +65,6 @@ public class studentCourseView implements Initializable {
 
             while (rs.next()) {
                 String nameDoc = rs.getString("nameDoc");
-                System.out.println(nameDoc);
                 listCourses.add(new CourseViewModel(rs.getString(1), setDate(rs.getString("week")), nameDoc));
             }
             tableView.setItems(listCourses);
@@ -71,9 +83,11 @@ public class studentCourseView implements Initializable {
         int idx = tableView.getSelectionModel().getSelectedIndex();
         if (idx != -1) {
             if (actionEvent.getSource() == viewFileBtn) {
-                String str = tableView.getColumns().get(0).getCellObservableValue(idx).getValue().toString();
-                System.out.println(str);
-                ConnectionUtil.readBlob(str, Mycourse.getclassID());
+                st = tableView.getColumns().get(0).getCellObservableValue(idx).getValue().toString();
+                System.out.println(st);
+                file = tableView.getColumns().get(2).getCellObservableValue(idx).getValue().toString();
+                File file = ConnectionUtil.readBlob(st, Mycourse.getclassID());
+                PDFreader pdFreader = new PDFreader(file.getAbsolutePath());
             }
         } else if (actionEvent.getSource() == textbook) {
             System.out.println(coursesView.getRes());
@@ -139,4 +153,11 @@ public class studentCourseView implements Initializable {
         }
     }
 
+    public static String getSt(){
+        return st;
+    }
+
+    public static String getFile(){
+        return file;
+    }
 }

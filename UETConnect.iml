@@ -11,5 +11,6 @@
     <orderEntry type="library" name="mysql-connector-java-8.0.111" level="project" />
     <orderEntry type="library" name="jfoenix-8.0.8" level="project" />
     <orderEntry type="library" name="com.calendarfx:view:8.4.2" level="project" />
+    <orderEntry type="library" name="jpedal-trial" level="project" />
   </component>
 </module>

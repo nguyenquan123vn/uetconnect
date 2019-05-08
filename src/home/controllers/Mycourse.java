@@ -57,6 +57,10 @@ public class Mycourse implements Initializable {
         } catch (SQLException e) {
                   e.printStackTrace();
         }
+        PieChart.Data slice = new PieChart.Data("Attendance", 13);
+        PieChart.Data slice1 = new PieChart.Data("Absent", 0);
+        pie.getData().add(slice);
+        pie.getData().add(slice1);
         list.setItems(items);
 
 

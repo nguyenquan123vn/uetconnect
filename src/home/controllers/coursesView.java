@@ -103,7 +103,8 @@ public class coursesView implements Initializable {
              if (actionEvent.getSource() == viewFileBtn) {
                 String str = tableView.getColumns().get(0).getCellObservableValue(idx).getValue().toString();
                 System.out.println(str);
-                ConnectionUtil.readBlob(str, myCourseTeacher.getClassID());
+                 File file = ConnectionUtil.readBlob(str, myCourseTeacher.getClassID());
+                 PDFreader pdFreader = new PDFreader(file.getAbsolutePath());
             }
         } else {
             if (actionEvent.getSource() == refreshBtn) {
