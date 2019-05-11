@@ -113,13 +113,11 @@ public class myCourseTeacher implements Initializable {
                 list1.getItems().remove(index);
                 delete(substr);
             } else if (actionEvent.getSource() == viewStudentbtn) {
-                buildData(substr);
-                StackPane root = new StackPane();
+                Parent root = FXMLLoader.load(getClass().getResource("/home/fxml/studentListView.fxml"));
                 Stage stage = new Stage();
-                root.setPadding(new Insets(10));
-                root.getChildren().add(tableView);
-                Scene scene = new Scene(root, 370, 300);
-                stage.setScene(scene);
+                stage.setScene(new Scene(root));
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.setTitle("Student List" + str);
                 stage.show();
             }
         } else if (actionEvent.getSource() == newCoursebtn) {
@@ -222,7 +220,7 @@ public class myCourseTeacher implements Initializable {
         return list1;
     }
 
-    public void buildData(String string) throws SQLException{
+    /*public void buildData(String string) throws SQLException{
         String sql = "SELECT s1.studentId, s1.studentName, s.grade FROM uetcourse.students_subjects as s inner join uetcourse.studentsInfo as s1 where s.studentsId = s1.studentId and s.classId = ?;";
         ResultSet rs = null;
         try{
@@ -268,7 +266,7 @@ public class myCourseTeacher implements Initializable {
             data.add(new StudentModel(resultSet.getString(1),resultSet.getString(2), resultSet.getString(3)));
         }
         return data;
-    }
+    } */
     /*
     private void handleUpdate(TableColumn column){
         tableView.setEditable(true);

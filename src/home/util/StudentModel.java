@@ -14,64 +14,55 @@ import java.sql.SQLException;
 
 public class StudentModel {
 
-    public SimpleStringProperty studentId = new SimpleStringProperty();
-    public SimpleStringProperty studentName = new SimpleStringProperty();
-    public SimpleStringProperty grade = new SimpleStringProperty();
-    public SimpleStringProperty classId = new SimpleStringProperty();
+    private String studId, studName, midterm, finalEx, attendance;
 
     public StudentModel(){}
 
-    public StudentModel(String studId, String studName, String grade){
-        this.studentId = new SimpleStringProperty(studId);
-        this.studentName = new SimpleStringProperty(studName);
-        this.grade = new SimpleStringProperty(grade);
+    public StudentModel(String studId, String studName, String midterm, String finalEx, String attendance){
+        this.studId = studId;
+        this.studName = studName;
+        this.midterm = midterm;
+        this.finalEx = finalEx;
+        this.attendance = attendance;
     }
 
-    public void setClassId(String classId) {
-        this.classId.set(classId);
+    public String getAttendance() {
+        return attendance;
     }
 
-    public void setGrade(String grade) {
-        this.grade.set(grade);
+    public void setAttendance(String attendance) {
+        this.attendance = attendance;
     }
 
-    public void setStudentId(String studentId) {
-        this.studentId.set(studentId);
+    public String getFinalEx() {
+        return finalEx;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName.set(studentName);
+    public void setFinalEx(String finalEx) {
+        this.finalEx = finalEx;
     }
 
-    public String getStudentId() {
-        return studentId.get();
+    public String getMidterm() {
+        return midterm;
     }
 
-    public SimpleStringProperty studentIdProperty() {
-        return studentId;
+    public void setMidterm(String midterm) {
+        this.midterm = midterm;
     }
 
-    public String getStudentName() {
-        return studentName.get();
+    public String getStudId() {
+        return studId;
     }
 
-    public SimpleStringProperty studentNameProperty() {
-        return studentName;
+    public void setStudId(String studId) {
+        this.studId = studId;
     }
 
-    public String getGrade() {
-        return grade.get();
+    public String getStudName() {
+        return studName;
     }
 
-    public SimpleStringProperty gradeProperty() {
-        return grade;
-    }
-
-    public String getClassId() {
-        return classId.get();
-    }
-
-    public SimpleStringProperty classIdProperty() {
-        return classId;
+    public void setStudName(String studName) {
+        this.studName = studName;
     }
 }

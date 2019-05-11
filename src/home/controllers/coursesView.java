@@ -87,9 +87,9 @@ public class coursesView implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        week.setCellValueFactory(new PropertyValueFactory<>("Week"));
+        week.setCellValueFactory(new PropertyValueFactory<>("week"));
         week.setMinWidth(50);
-        date.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        date.setCellValueFactory(new PropertyValueFactory<>("date"));
         date.setMinWidth(200);
         fileName.setCellValueFactory(new PropertyValueFactory<>("fileName"));
         fileName.setMinWidth(300);
