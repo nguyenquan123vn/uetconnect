@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="home.controllers.studentListView">
+   <children>
+      <TableView fx:id="table" fixedCellSize="0.0" prefHeight="400.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="studId" prefWidth="75.0" text="MSSV" />
+          <TableColumn fx:id="studName" prefWidth="188.0" text="Ho va ten" />
+            <TableColumn fx:id="midTerm" onEditCommit="#handleEdit" prefWidth="102.0" text="Giua Ki" />
+            <TableColumn fx:id="finalEx" onEditCommit="#handleEdit" prefWidth="115.0" text="Cuoi Ky" />
+            <TableColumn fx:id="attendance" onEditCommit="#handleEdit" prefWidth="119.0" text="Diem Danh" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

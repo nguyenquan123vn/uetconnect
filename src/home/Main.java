@@ -1,6 +1,8 @@
 package home;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
@@ -9,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class Main extends Application {
 
@@ -26,7 +29,25 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 632.0, 570.0));
         primaryStage.setResizable(false);
         primaryStage.setTitle("UETConnect");
+        primaryStage.setOnCloseRequest( e -> {
+            try {
+                stop();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
         primaryStage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        try {
+            super.stop(); //To change body of generated methods, choose Tools | Templates.
+            System.exit(0);
+            Platform.exit();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
