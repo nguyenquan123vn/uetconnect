@@ -32,6 +32,10 @@ public class Mycourse implements Initializable {
     @FXML
     private Button leaveCourse;
 
+    private String str1="";
+    private int i=0;
+    public static String[] ListCo=new String[10];
+
     private static String classID;
     private ObservableList<String> items = FXCollections.observableArrayList();
 
@@ -51,7 +55,9 @@ public class Mycourse implements Initializable {
                     "INNER JOIN uetcourse.Subjects as s1 \n" +
                     "Inner join uetcourse.Lecturers as l on s1.subjectID = c.subjectID and l.lecturerId = c.lecturerId\n");
             while (rs.next()) {
-                String str1 = rs.getString(1);
+                str1 = rs.getString(1);
+                ListCo[i]=str1;
+                i++;
                 items.add(str1);
             }
         } catch (SQLException e) {
