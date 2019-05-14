@@ -51,6 +51,10 @@ public class myCourseTeacher implements Initializable {
     @FXML
     protected Button viewStudentbtn;
 
+    private String strTea="";
+    public static String[] ListCoTea=new String[10];
+    private int i=0;
+
     private String fileName = null;
 
     private static String classID;
@@ -74,8 +78,10 @@ public class myCourseTeacher implements Initializable {
             rs = stmt.executeQuery("SELECT concat('(',c.classId, ') ', s.subjectName, ' - GV: ', l.lecturerName) FROM uetcourse.classes as c inner join uetcourse.Subjects as s inner join uetcourse.Lecturers as l where c.lecturerId = l.lecturerId and c.subjectId = s.subjectId;");
 
             while (rs.next()) {
-                String str1 = rs.getString(1);
-                items.add(str1);
+                strTea = rs.getString(1);
+                ListCoTea[i]=strTea;
+                i++;
+                items.add(strTea);
             }
         } catch (SQLException e) {
             e.printStackTrace();
