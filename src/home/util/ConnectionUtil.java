@@ -31,7 +31,7 @@ public class ConnectionUtil {
      public static Connection connectdb() {
          try {
              Class.forName("com.mysql.cj.jdbc.Driver");
-             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/uetcourse","root","slowpoke");
+             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/uetcourse","root","0866713970");
              return conn;
          }
          catch(Exception e){
